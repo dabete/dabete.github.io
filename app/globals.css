@@ -26,7 +26,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-cormorant);
-  --font-logo: var(--font-kaushan);
+  --font-logo: var(--font-cinzel);
 }
 
 body {
@@ -52,4 +52,56 @@ h2 {
   --tw-prose-invert-counters: var(--gold);
   --tw-prose-invert-hr: var(--line);
   --tw-prose-invert-code: var(--foreground);
+}
+
+/* ---- Project disks (Pucci-style) ----
+   A round disk with a hole. When its card (.group) is hovered or focused,
+   it lifts up and starts spinning slowly. */
+.disk {
+  position: relative;
+  border-radius: 9999px;
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  /* Placeholder look: fine gold grooves, like a record */
+  background: repeating-radial-gradient(
+      circle,
+      transparent 0 3px,
+      rgb(201 165 76 / 0.12) 3px 4px
+    ),
+    radial-gradient(circle, var(--raised), var(--background));
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.45);
+  transition: translate 0.4s ease, box-shadow 0.4s ease;
+  animation: disk-spin 12s linear infinite paused;
+}
+
+/* The hole in the middle, with a gold rim */
+.disk::after {
+  content: "";
+  position: absolute;
+  inset: 42%;
+  border-radius: 9999px;
+  background: var(--background);
+  box-shadow: 0 0 0 4px rgb(201 165 76 / 0.5);
+}
+
+.group:hover .disk,
+.group:focus-visible .disk {
+  translate: 0 -10px;
+  box-shadow: 0 22px 40px rgb(0 0 0 / 0.55);
+  animation-play-state: running;
+}
+
+@keyframes disk-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* Reduced motion: the disk still lifts a little, but never spins */
+@media (prefers-reduced-motion: reduce) {
+  .disk {
+    animation: none;
+  }
 }

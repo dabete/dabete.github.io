@@ -3,7 +3,7 @@ import {
   Geist,
   Geist_Mono,
   Cormorant_Garamond,
-  Kaushan_Script,
+  Cinzel,
 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -26,11 +26,11 @@ const cormorant = Cormorant_Garamond({
   weight: ["500", "600", "700"],
 });
 
-// Brush script, used only for the "Diego's World" logo.
-const kaushan = Kaushan_Script({
-  variable: "--font-kaushan",
+// Engraved-style capitals, used for the "Diego's World" logo and tags.
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
   subsets: ["latin"],
-  weight: "400", // the only weight this font has
+  weight: ["500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${kaushan.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${cinzel.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Navbar />

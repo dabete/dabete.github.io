@@ -5,6 +5,7 @@ status: "finished"
 date: "2025-06"
 tags: ["JavaScript", "HTML", "CSS", "React with Vite", "Java", "Spring Boot", "PostgreSQL"]
 github: "https://github.com/dabete/Fridge-full-stack"
+highlight: "Lighthouse 68 → 92"
 ---
 
 ## The problem

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ProjectCard from "@/components/ProjectCard";
 import { getAllProjects } from "@/lib/projects";
+import ToBeContinued from "@/components/ToBeContinued";
 
 export const metadata: Metadata = { title: "Projects" };
 
@@ -20,6 +21,9 @@ export default function ProjectsPage() {
           <ProjectCard key={project.slug} project={project} />
         ))}
       </ul>
+
+      {/* More projects are on the way */}
+      <ToBeContinued />
 
       {inProgress.length > 0 && (
         <>

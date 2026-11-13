@@ -12,6 +12,8 @@ export type Project = {
   tags: string[];
   github?: string; // the ? means optional
   demo?: string;
+  highlight?: string; // one headline metric shown on the card
+  image?: string; // e.g. "/projects/fridge.png" (file in public/projects/)
 };
 
 // Where the project files live: <project root>/content/projects

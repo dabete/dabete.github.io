@@ -5,6 +5,7 @@ status: "finished"
 date: "2025-12"
 tags: ["Go", "Distributed Systems", "Backend", "Redis", "Docker", "Docker Compose"]
 github: "https://github.com/dabete/Reverse_Proxy"
+highlight: "1,000 req/s · 7.1ms p95"
 ---
 
 ## The problem

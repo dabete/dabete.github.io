@@ -18,8 +18,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-background/80 backdrop-blur">
       <nav className="mx-auto flex w-full max-w-3xl items-center justify-between px-6 py-4">
-        {/* font-logo = Kaushan Script, set up in layout.tsx + globals.css */}
-        <Link href="/" className="font-logo text-2xl text-gold">
+        {/* font-logo = Cinzel, set up in layout.tsx + globals.css */}
+        <Link href="/" className="font-logo text-lg font-semibold tracking-widest text-gold uppercase">
           Diego&apos;s World
         </Link>
         <ul className="flex gap-6 text-sm text-muted">

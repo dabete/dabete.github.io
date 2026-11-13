@@ -9,6 +9,8 @@ date: "2026-01" # always in quotes
 tags: ["Tag1", "Tag2"]
 github: "https://github.com/..." # optional: delete the line if none
 demo: "https://..." # optional: delete the line if none
+highlight: "1,000 req/s" # optional: one headline number shown on the card
+image: "/projects/my-project.png" # optional: put the file in public/projects/
 ---
 
 ## The problem
