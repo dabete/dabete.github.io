@@ -13,7 +13,7 @@ I made this project after I finished my Fridge social media app. As I learned mo
 
 ## Metrics
 
-- Enforced a single shared per-client rate limit across 3 gateway instances within 2.9% of theoretical bounds (34 of 35 allowed) under constant load, incorporating an atomic Redus Lua token bucket that fails open upon Redis unavailability.
+- Enforced a single shared per-client rate limit across 3 gateway instances within 2.9% of theoretical bounds (34 of 35 allowed) under constant load, incorporating an atomic Redis Lua token bucket that fails open upon Redis unavailability.
 - Sustained 1000 req/s with 100% availability and a 7.1ms p95 latency across 3 gateways by building a round-robin load balancer in Go with connection-pooled reverse proxying
 - Maintained 99.94% availability during abrupt node failures by engineering passive circuit breaking and active polling, containing dropped traffic to 8 of 12,000 requests (0.06%) with automated failover under 0.1s
 

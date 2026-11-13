@@ -46,10 +46,10 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
   const { project, content } = result;
 
   return (
-    <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-8">
-      {/* /#projects = the homepage, scrolled to the element with id="projects" */}
+    <>
+      {/* Back to the list page at app/projects/page.tsx */}
       <Link
-        href="/#projects"
+        href="/projects"
         className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
       >
         ← Back to projects
@@ -93,6 +93,6 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
       <article className="prose prose-zinc dark:prose-invert mt-8">
         <Markdown>{content}</Markdown>
       </article>
-    </main>
+    </>
   );
 }

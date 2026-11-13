@@ -11,7 +11,7 @@ github: "https://github.com/dabete/Fridge-full-stack"
 
 This project was me wanting to learn about web development. After some research about which tech stack to use I settled on React for the frontend because I liked how reusable components were and Spring Boot as it was an industry standard for many companies, such as Amazon for example (another factor in my decision making was that I was learning Java in university at this time).
 
-During year 1 of uni, I went to a hackathon, and I came up with the idea to design an app for students living in accomodation that share fridges to have a simple way to tell who's food is which, and which food people don't mind sharing (which reduces food waste). This would have prevented a lot of arguments over fridge space, which I know in some accoms is tiny. 
+During year 1 of uni, I went to a hackathon, and I came up with the idea to design an app for students living in accommodation that share fridges to have a simple way to tell whose food is which, and which food people don't mind sharing (which reduces food waste). This would have prevented a lot of arguments over fridge space, which I know in some accoms is tiny. 
 After the hackathon, I decided that I wanted to expand on the idea myself, and use it as a learning opportunity, which led me to create Fridge.
 
 ## Metrics
@@ -24,7 +24,7 @@ After the hackathon, I decided that I wanted to expand on the idea myself, and u
 
 ## What I built
 
-I built a full-stack application (frontend: React with Vite, backend: Java Spring Boot) designed for university students living in studnet accomodation sharing fridges. This app is designed to mitigate arguments over storage space by putting everyone in a group chat called a 'fridge'
+I built a full-stack application (frontend: React with Vite, backend: Java Spring Boot) designed for university students living in student accommodation sharing fridges. This app is designed to mitigate arguments over storage space by putting everyone in a group chat called a 'fridge'
 
 Once logged in, you can add foot items to your 'personal fridge', which is just a database of all the food items that you have bought personally, and designed for personal consumption only. Once in a 'fridge', you can allocate items from your 'personal fridge' to the 'shared fridge', which signals to your flatmates that anyone is allowed to take that food if they please (which is also helpful if your flatmates decide to do a group shopping instead of individual). If you decide you want an item back for personal consumption only, you can always revoke it from the fridge at any time. 
 
@@ -34,5 +34,5 @@ You can join a 'fridge' by entering a token in the home page, which is randomly 
 
 ## What I learned
 
-I learned a lot about how frontend and backend development works. In particular I learnt a lot about data is stored and retrieved to databases using the Spring Boot ORM, and creating helper functions to send images to a supabase bucket. 
+I learned a lot about how frontend and backend development works. In particular I learnt a lot about how data is stored and retrieved to databases using the Spring Boot ORM, and creating helper functions to send images to a supabase bucket. 
 I also learnt about user authentication and utilising JWT tokens in order for a stateless server to know who a user is and what they are authorised to access. 

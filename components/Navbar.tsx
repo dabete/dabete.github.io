@@ -5,12 +5,13 @@ type NavLink = {
   href: string;
   label: string;
 }
-// The links shown in the navbar. Adding a section = adding one line here.
+// The links shown in the navbar. Adding a page = adding one line here
+// (plus its folder in app/).
 const links: NavLink[] = [
-  { href: "/#about", label: "About" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#contact", label: "Contact" },
-  { href: "/#resume", label: "Resume" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/resume", label: "Resume" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -23,10 +24,9 @@ export default function Navbar() {
         <ul className="flex gap-6 text-sm text-zinc-600 dark:text-zinc-400">
           {links.map((link) => (
             <li key={link.href}>
-              {/* Plain <a>, not <Link>: the browser re-scrolls even when the URL already has this #hash */}
-              <a href={link.href} className="hover:text-foreground">
+              <Link href={link.href} className="hover:text-foreground">
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
