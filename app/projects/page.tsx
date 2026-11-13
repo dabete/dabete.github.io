@@ -23,7 +23,7 @@ export default function ProjectsPage() {
 
       {inProgress.length > 0 && (
         <>
-          <h2 className="mt-10 font-medium text-zinc-900 dark:text-zinc-100">
+          <h2 className="mt-10 font-medium text-foreground">
             Currently building
           </h2>
           <ul className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">

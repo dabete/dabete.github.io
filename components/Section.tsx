@@ -10,7 +10,7 @@ export default function Section({ title, children }: SectionProps) {
   return (
     <section className="py-6">
       <h2 className="text-2xl font-semibold">{title}</h2>
-      <div className="mt-4 text-zinc-600 dark:text-zinc-400">{children}</div>
+      <div className="mt-4 text-muted">{children}</div>
     </section>
   );
 }

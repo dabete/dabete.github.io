@@ -50,12 +50,12 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
       {/* Back to the list page at app/projects/page.tsx */}
       <Link
         href="/projects"
-        className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
+        className="text-sm text-muted hover:text-gold"
       >
         ← Back to projects
       </Link>
 
-      <h1 className="mt-6 text-3xl font-semibold text-zinc-900 dark:text-zinc-100">
+      <h1 className="mt-6 text-3xl font-semibold text-foreground">
         {project.title}
       </h1>
       <p className="mt-2">{project.summary}</p>
@@ -70,7 +70,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:text-zinc-900 dark:hover:text-zinc-100"
+              className="underline underline-offset-4 hover:text-gold"
             >
               GitHub ↗
             </a>
@@ -80,7 +80,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:text-zinc-900 dark:hover:text-zinc-100"
+              className="underline underline-offset-4 hover:text-gold"
             >
               Live demo ↗
             </a>
@@ -89,8 +89,8 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
       )}
 
       {/* "prose" styles the HTML that Markdown produces (headings, lists...).
-          "dark:prose-invert" flips its colours for dark mode. */}
-      <article className="prose prose-zinc dark:prose-invert mt-8">
+          "prose-invert" = light text for a dark page (colours set in globals.css). */}
+      <article className="prose prose-invert mt-8">
         <Markdown>{content}</Markdown>
       </article>
     </>

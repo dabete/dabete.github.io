@@ -98,7 +98,7 @@ function ResumeEntry({ entry }: { entry: Entry }) {
   return (
     <div className="mt-6 first:mt-0">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-        <h3 className="font-medium text-zinc-900 dark:text-zinc-100">
+        <h3 className="font-medium text-foreground">
           {entry.href ? (
             <Link href={entry.href} className="underline underline-offset-4">
               {entry.title}
@@ -107,7 +107,7 @@ function ResumeEntry({ entry }: { entry: Entry }) {
             entry.title
           )}
         </h3>
-        <span className="text-sm text-zinc-500">{entry.date}</span>
+        <span className="text-sm text-muted">{entry.date}</span>
       </div>
       <p className="text-sm italic">{entry.subtitle}</p>
       <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
@@ -130,7 +130,7 @@ export default function ResumePage() {
           href="/diego-abete-resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90"
+          className="rounded-md bg-gold px-4 py-2 text-sm font-medium text-background hover:opacity-90"
         >
           Download PDF ↓
         </a>
@@ -158,7 +158,7 @@ export default function ResumePage() {
         <dl className="space-y-2 text-sm">
           {skills.map((s) => (
             <div key={s.label}>
-              <dt className="inline font-medium text-zinc-900 dark:text-zinc-100">
+              <dt className="inline font-medium text-foreground">
                 {s.label}:{" "}
               </dt>
               <dd className="inline">{s.items}</dd>

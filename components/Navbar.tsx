@@ -16,15 +16,16 @@ const links: NavLink[] = [
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-10 border-b border-zinc-200 bg-background/80 backdrop-blur dark:border-zinc-800">
+    <header className="sticky top-0 z-10 border-b border-line bg-background/80 backdrop-blur">
       <nav className="mx-auto flex w-full max-w-3xl items-center justify-between px-6 py-4">
-        <Link href="/" className="font-semibold">
-          Diego Abete
+        {/* font-logo = Kaushan Script, set up in layout.tsx + globals.css */}
+        <Link href="/" className="font-logo text-2xl text-gold">
+          Diego&apos;s World
         </Link>
-        <ul className="flex gap-6 text-sm text-zinc-600 dark:text-zinc-400">
+        <ul className="flex gap-6 text-sm text-muted">
           {links.map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className="hover:text-foreground">
+              <Link href={link.href} className="hover:text-gold">
                 {link.label}
               </Link>
             </li>

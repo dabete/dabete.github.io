@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   // would 404 on /projects because a projects/ folder also exists.
   trailingSlash: true,
   turbopack: {
+    // Pin the project root to this folder. Without it, a stray package.json in
+    // the home folder made Next treat C:\Users\dejap as the root.
+    root: __dirname,
     rules: {
       "*.css": {
         loaders: ["@tailwindcss/turbopack"],

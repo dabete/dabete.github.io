@@ -6,7 +6,7 @@ export default function ContactPage() {
   return (
     <>
       <h1 className="text-3xl font-semibold">Contact</h1>
-      <div className="mt-4 space-y-2 text-zinc-600 dark:text-zinc-400">
+      <div className="mt-4 space-y-2 text-muted">
         <p>If you have any questions, please feel free to contact me at:</p>
         <p>
           <a

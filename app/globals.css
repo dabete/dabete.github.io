@@ -1,27 +1,55 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* The site's palette. The site is always dark (navy + gold), so there's no
+   light-mode version. Change a colour here and it changes everywhere. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0b1426; /* navy page background */
+  --raised: #111d35; /* slightly lighter navy: cards, tags */
+  --line: #22304d; /* borders and dividers */
+  --foreground: #f2eee4; /* warm off-white: headings, important text */
+  --muted: #9aa3b5; /* grey-blue: body and secondary text */
+  --gold: #c9a54c; /* accent: logo, buttons, hovers */
+  color-scheme: dark;
 }
 
+/* @theme turns the variables above into Tailwind classes:
+   --color-gold → text-gold, bg-gold, border-gold, ...
+   --font-serif → font-serif, etc. */
 @theme inline {
   --color-background: var(--background);
+  --color-raised: var(--raised);
+  --color-line: var(--line);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-serif: var(--font-cormorant);
+  --font-logo: var(--font-kaushan);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Page and section headings use the serif everywhere */
+h1,
+h2 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  text-wrap: balance;
+}
+
+/* Colours for Markdown in project write-ups (the "prose" classes) */
+.prose-invert {
+  --tw-prose-invert-body: var(--muted);
+  --tw-prose-invert-headings: var(--foreground);
+  --tw-prose-invert-bold: var(--foreground);
+  --tw-prose-invert-links: var(--gold);
+  --tw-prose-invert-bullets: var(--gold);
+  --tw-prose-invert-counters: var(--gold);
+  --tw-prose-invert-hr: var(--line);
+  --tw-prose-invert-code: var(--foreground);
 }
