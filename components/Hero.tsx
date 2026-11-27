@@ -25,7 +25,7 @@ export default function Hero() {
         <div className="mt-9 flex flex-wrap gap-3 text-sm font-semibold">
           <Link
             href="/projects"
-            className="rounded-md bg-accent px-5 py-2.5 text-background transition-transform duration-300 hover:-translate-y-0.5"
+            className="rounded-md border border-accent px-5 py-2.5 text-accent hover:bg-accent/10 transition-transform duration-300 hover:-translate-y-0.5"
           >
             See my projects
           </Link>

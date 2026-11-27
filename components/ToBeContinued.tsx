@@ -1,13 +1,12 @@
-// An orange arrow-shaped tag that says "To be continued" (a JoJo nod).
-// clip-path cuts the box into an arrow pointing right.
+// An orange outlined arrow tag that says "To be continued" (a JoJo nod).
+// Outline only, no solid orange fill: orange blocks with black text read like a certain logo.
 export default function ToBeContinued() {
   return (
     <div className="mt-12 flex justify-end">
       <p
-        className="bg-accent py-2 pr-10 pl-5 font-mono text-sm font-semibold tracking-widest text-background uppercase"
-        style={{ clipPath: "polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%)" }}
+        className="border border-accent px-4 py-2 font-mono text-sm font-semibold tracking-widest text-accent uppercase"
       >
-        To be continued
+        To be continued ⟶
       </p>
     </div>
   );

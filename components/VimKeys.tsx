@@ -173,7 +173,7 @@ export default function VimKeys() {
       {/* which-key popup */}
       <div
         aria-hidden={!menu}
-        className={`fixed right-4 bottom-9 z-50 min-w-56 rounded-lg border border-line bg-[#161616] px-4 py-3 font-mono text-sm transition duration-200 ${menu ? "opacity-100" : "pointer-events-none translate-y-2 opacity-0"}`}
+        className={`fixed right-4 bottom-9 z-50 min-w-56 rounded-lg border border-line bg-[#252525] px-4 py-3 font-mono text-sm transition duration-200 ${menu ? "opacity-100" : "pointer-events-none translate-y-2 opacity-0"}`}
       >
         <p className="mb-1.5 text-foreground">~/diego</p>
         {MENU.map(([key, label]) => (
@@ -190,9 +190,9 @@ export default function VimKeys() {
       {/* status bar */}
       <div
         aria-hidden={!active}
-        className={`fixed inset-x-0 bottom-0 z-40 flex border-t border-line bg-[#161616] font-mono text-xs transition-transform duration-300 ${active ? "" : "translate-y-full"}`}
+        className={`fixed inset-x-0 bottom-0 z-40 flex border-t border-line bg-[#252525] font-mono text-xs transition-transform duration-300 ${active ? "" : "translate-y-full"}`}
       >
-        <span className="bg-accent px-2.5 py-1 font-bold text-background">
+        <span className="border-r border-line px-2.5 py-1 font-bold text-accent">
           {cmd !== null ? "COMMAND" : "NORMAL"}
         </span>
         <span className="px-2.5 py-1 text-foreground">~/diego/{file}</span>

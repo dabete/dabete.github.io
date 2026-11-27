@@ -1,11 +1,11 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* The site's palette: near-black, off-white and one orange accent (the cat's
+/* The site's palette: dark grey, off-white and one orange accent (the cat's
    eye colour). Always dark, so there's no light-mode version. */
 :root {
-  --background: #0e0e0e;
-  --line: #222222; /* borders and dividers */
+  --background: #1c1c1c;
+  --line: #303030; /* borders and dividers */
   --foreground: #f0f0f0; /* headings, important text */
   --muted: #8a8a8a; /* body and secondary text */
   --accent: #ff9a3c; /* links, buttons, hovers, the cat's eyes */
@@ -39,8 +39,8 @@ h2 {
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--background);
+  background: rgb(255 154 60 / 0.3);
+  color: var(--foreground);
 }
 
 /* Colours for Markdown in project write-ups (the "prose" classes) */
@@ -91,7 +91,8 @@ main > :nth-child(n + 6),
   color: var(--foreground);
 }
 
-/* ---- Project rows: fill orange from the left on hover / vim selection ---- */
+/* ---- Project rows: faint orange tint + orange edge slide in from the left on hover / vim selection.
+   Deliberately not a solid orange fill with black text (reads like a certain logo). ---- */
 .project-row {
   position: relative;
   isolation: isolate;
@@ -102,13 +103,14 @@ main > :nth-child(n + 6),
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--accent);
+  background: rgb(255 154 60 / 0.08);
+  box-shadow: inset 2px 0 var(--accent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s var(--ease);
 }
 .project-row .row-title {
-  transition: translate 0.45s var(--ease);
+  transition: translate 0.45s var(--ease), color 0.3s;
 }
 .project-row:is(:hover, :focus-visible, [data-selected])::after {
   transform: scaleX(1);
@@ -116,8 +118,8 @@ main > :nth-child(n + 6),
 .project-row:is(:hover, :focus-visible, [data-selected]) .row-title {
   translate: 8px 0;
 }
-.project-row:is(:hover, :focus-visible, [data-selected]) * {
-  color: var(--background);
+.project-row:is(:hover, :focus-visible, [data-selected]) .row-title {
+  color: var(--accent);
 }
 
 /* ---- The cat ---- */

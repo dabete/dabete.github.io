@@ -44,7 +44,7 @@ export default function Image() {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "0 90px",
-          background: "#0e0e0e",
+          background: "#1c1c1c",
           borderBottom: "12px solid #ff9a3c",
         }}
       >
