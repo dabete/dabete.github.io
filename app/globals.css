@@ -168,6 +168,15 @@ main > :nth-child(n + 6),
   pointer-events: none;
   animation: purr-rise 1.4s ease-out forwards;
 }
+/* The real cat's photo pops up above the ASCII one while it purrs */
+.cat-photo {
+  animation: cat-photo 2.3s var(--ease) both;
+}
+@keyframes cat-photo {
+  0% { opacity: 0; transform: translate(-50%, 10px) scale(0.9); }
+  15%, 80% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -6px) scale(1); }
+}
 @keyframes purr-rise {
   0% { opacity: 0; }
   10% { opacity: 1; }

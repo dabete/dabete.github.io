@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const MENACE = ["left-0 top-[10%]", "left-1.5 top-[55%] [animation-delay:0.9s]", "right-0 top-[18%] [animation-delay:0.45s]", "right-2 top-[62%] [animation-delay:1.35s]"];
 
-// ASCII British Shorthair. Orange eyes follow the mouse; click it and it purrs.
+// ASCII British Shorthair. Orange eyes follow the mouse; click it and it purrs and the real cat's photo pops up.
 export default function Cat() {
   const root = useRef<HTMLButtonElement>(null);
   const [purrId, setPurrId] = useState(0); // >0 while purring; changes each purr
@@ -51,6 +51,15 @@ export default function Cat() {
           ゴ
         </span>
       ))}
+      {purrId > 0 && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={purrId}
+          src="/cat.jpeg"
+          alt=""
+          className="cat-photo pointer-events-none absolute bottom-full left-1/2 size-28 rounded-2xl object-cover object-[50%_60%]"
+        />
+      )}
       {purrId > 0 &&
         ["purr~", "♥", "purr~", "♥", "purr~"].map((text, i) => (
           <span
