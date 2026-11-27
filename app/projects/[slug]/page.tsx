@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Markdown from "react-markdown";
@@ -50,15 +51,19 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
       {/* Back to the list page at app/projects/page.tsx */}
       <Link
         href="/projects"
-        className="text-sm text-muted hover:text-gold"
+        className="font-mono text-sm text-muted transition-colors hover:text-accent"
       >
-        ← Back to projects
+        ← back to projects
       </Link>
 
-      <h1 className="mt-6 text-3xl font-semibold text-foreground">
-        {project.title}
-      </h1>
-      <p className="mt-2">{project.summary}</p>
+      {/* Same name as the title in ProjectRow, so the list title morphs into
+          this heading. animate-none: the morph is its entrance, no fade-up. */}
+      <ViewTransition name={`project-${project.slug}`}>
+        <h1 className="mt-6 animate-none text-5xl leading-none text-foreground">
+          {project.title}
+        </h1>
+      </ViewTransition>
+      <p className="mt-4 text-muted">{project.summary}</p>
       <TagList tags={project.tags} className="mt-4" />
 
       {/* Only shows links that exist in the front matter.
@@ -70,7 +75,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:text-gold"
+              className="underline underline-offset-4 hover:text-accent"
             >
               GitHub ↗
             </a>
@@ -80,7 +85,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:text-gold"
+              className="underline underline-offset-4 hover:text-accent"
             >
               Live demo ↗
             </a>

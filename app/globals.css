@@ -1,32 +1,28 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* The site's palette. The site is always dark (navy + gold), so there's no
-   light-mode version. Change a colour here and it changes everywhere. */
+/* The site's palette: near-black, off-white and one orange accent (the cat's
+   eye colour). Always dark, so there's no light-mode version. */
 :root {
-  --background: #0b1426; /* navy page background */
-  --raised: #111d35; /* slightly lighter navy: cards, tags */
-  --line: #22304d; /* borders and dividers */
-  --foreground: #f2eee4; /* warm off-white: headings, important text */
-  --muted: #9aa3b5; /* grey-blue: body and secondary text */
-  --gold: #c9a54c; /* accent: logo, buttons, hovers */
+  --background: #0e0e0e;
+  --line: #222222; /* borders and dividers */
+  --foreground: #f0f0f0; /* headings, important text */
+  --muted: #8a8a8a; /* body and secondary text */
+  --accent: #ff9a3c; /* links, buttons, hovers, the cat's eyes */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   color-scheme: dark;
 }
 
 /* @theme turns the variables above into Tailwind classes:
-   --color-gold → text-gold, bg-gold, border-gold, ...
-   --font-serif → font-serif, etc. */
+   --color-accent → text-accent, bg-accent, border-accent, ... */
 @theme inline {
   --color-background: var(--background);
-  --color-raised: var(--raised);
   --color-line: var(--line);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
-  --color-gold: var(--gold);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-cormorant);
-  --font-logo: var(--font-cinzel);
 }
 
 body {
@@ -35,11 +31,16 @@ body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
-/* Page and section headings use the serif everywhere */
 h1,
 h2 {
-  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
   text-wrap: balance;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
 }
 
 /* Colours for Markdown in project write-ups (the "prose" classes) */
@@ -47,61 +48,181 @@ h2 {
   --tw-prose-invert-body: var(--muted);
   --tw-prose-invert-headings: var(--foreground);
   --tw-prose-invert-bold: var(--foreground);
-  --tw-prose-invert-links: var(--gold);
-  --tw-prose-invert-bullets: var(--gold);
-  --tw-prose-invert-counters: var(--gold);
+  --tw-prose-invert-links: var(--accent);
+  --tw-prose-invert-bullets: var(--accent);
+  --tw-prose-invert-counters: var(--accent);
   --tw-prose-invert-hr: var(--line);
   --tw-prose-invert-code: var(--foreground);
 }
 
-/* ---- Project disks (Pucci-style) ----
-   A round disk with a hole. When its card (.group) is hovered or focused,
-   it lifts up and starts spinning slowly. */
-.disk {
-  position: relative;
-  border-radius: 9999px;
-  aspect-ratio: 1;
-  border: 1px solid var(--line);
-  /* Placeholder look: fine gold grooves, like a record */
-  background: repeating-radial-gradient(
-      circle,
-      transparent 0 3px,
-      rgb(201 165 76 / 0.12) 3px 4px
-    ),
-    radial-gradient(circle, var(--raised), var(--background));
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 10px 30px rgb(0 0 0 / 0.45);
-  transition: translate 0.4s ease, box-shadow 0.4s ease;
-  animation: disk-spin 12s linear infinite paused;
+/* ---- Page load: content fades up, one block after another ----
+   Applies to each page's top-level blocks (main > *) and to anything marked
+   .stagger (its children animate one by one). */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}
+main > *,
+.stagger > * {
+  animation: fade-up 0.7s var(--ease) both;
+}
+main > :nth-child(2),
+.stagger > :nth-child(2) { animation-delay: 0.08s; }
+main > :nth-child(3),
+.stagger > :nth-child(3) { animation-delay: 0.16s; }
+main > :nth-child(4),
+.stagger > :nth-child(4) { animation-delay: 0.24s; }
+main > :nth-child(5),
+.stagger > :nth-child(5) { animation-delay: 0.32s; }
+main > :nth-child(n + 6),
+.stagger > :nth-child(n + 6) { animation-delay: 0.4s; }
+
+/* Links that draw an underline from the left on hover */
+.link-line {
+  background: linear-gradient(var(--accent), var(--accent)) left bottom / 0 1px no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.3s var(--ease), color 0.3s;
+}
+.link-line:hover,
+.link-line:focus-visible {
+  background-size: 100% 1px;
+  color: var(--foreground);
 }
 
-/* The hole in the middle, with a gold rim */
-.disk::after {
+/* ---- Project rows: fill orange from the left on hover / vim selection ---- */
+.project-row {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.project-row::after {
   content: "";
   position: absolute;
-  inset: 42%;
-  border-radius: 9999px;
-  background: var(--background);
-  box-shadow: 0 0 0 4px rgb(201 165 76 / 0.5);
+  inset: 0;
+  z-index: -1;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+.project-row .row-title {
+  transition: translate 0.45s var(--ease);
+}
+.project-row:is(:hover, :focus-visible, [data-selected])::after {
+  transform: scaleX(1);
+}
+.project-row:is(:hover, :focus-visible, [data-selected]) .row-title {
+  translate: 8px 0;
+}
+.project-row:is(:hover, :focus-visible, [data-selected]) * {
+  color: var(--background);
 }
 
-.group:hover .disk,
-.group:focus-visible .disk {
-  translate: 0 -10px;
-  box-shadow: 0 22px 40px rgb(0 0 0 / 0.55);
-  animation-play-state: running;
+/* ---- The cat ---- */
+.cat-eye {
+  display: inline-block;
+  color: var(--accent);
+  text-shadow: 0 0 8px rgb(255 154 60 / 0.6);
+  animation: cat-blink 5s infinite;
+}
+.cat-pupil {
+  display: inline-block;
+  transition: translate 0.15s ease-out;
+}
+@keyframes cat-blink {
+  0%, 90%, 100% { scale: 1 1; }
+  94% { scale: 1 0.1; }
 }
 
-@keyframes disk-spin {
-  to {
-    rotate: 360deg;
-  }
+/* ゴ letters drifting up around the cat */
+.menace {
+  position: absolute;
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 22px;
+  opacity: 0;
+  pointer-events: none;
+  animation: menace 2.6s ease-out infinite;
+}
+@keyframes menace {
+  0% { opacity: 0; transform: translateY(8px) scale(0.9); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-16px) scale(1.1); }
 }
 
-/* Reduced motion: the disk still lifts a little, but never spins */
+/* Click the cat: it purrs */
+.purring {
+  animation: purr 0.08s 18;
+}
+@keyframes purr {
+  25% { translate: -1px 1px; }
+  75% { translate: 1px -1px; }
+}
+.purr-float {
+  position: absolute;
+  top: 10%;
+  color: var(--accent);
+  font-size: 14px;
+  pointer-events: none;
+  animation: purr-rise 1.4s ease-out forwards;
+}
+@keyframes purr-rise {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  100% { opacity: 0; translate: 0 -50px; }
+}
+
+/* 404: the page falls off the table */
+.falling {
+  display: inline-block;
+  animation: fall 1.4s cubic-bezier(0.5, 0, 0.8, 0.4) 0.8s forwards;
+}
+@keyframes fall {
+  to { transform: translate(40px, 120px) rotate(160deg); opacity: 0; }
+}
+
+/* ---- Page transitions (React <ViewTransition>) ---- */
+::view-transition {
+  pointer-events: none; /* clicks during a transition still reach the page */
+}
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+::view-transition-group(*) {
+  animation-duration: 0.4s;
+  animation-timing-function: var(--ease);
+}
+
+/* Reduced motion: everything shows up still */
 @media (prefers-reduced-motion: reduce) {
-  .disk {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
   }
+  .menace {
+    opacity: 0.8;
+  }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* The page you're on: orange, underline always drawn */
+.link-line[aria-current="page"] {
+  background-size: 100% 1px;
+  color: var(--accent);
 }

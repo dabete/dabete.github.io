@@ -100,7 +100,7 @@ function ResumeEntry({ entry }: { entry: Entry }) {
       <div className="flex flex-wrap items-baseline justify-between gap-x-4">
         <h3 className="font-medium text-foreground">
           {entry.href ? (
-            <Link href={entry.href} className="underline underline-offset-4">
+            <Link href={entry.href} className="underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent">
               {entry.title}
             </Link>
           ) : (
@@ -123,14 +123,14 @@ export default function ResumePage() {
   return (
     <>
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-3xl font-semibold">Resume</h1>
+        <h1 className="text-5xl">Resume</h1>
         {/* Files in public/ are served from the root of the site:
             public/diego-abete-resume.pdf → /diego-abete-resume.pdf */}
         <a
           href="/diego-abete-resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-md bg-gold px-4 py-2 text-sm font-medium text-background hover:opacity-90"
+          className="rounded-md bg-accent px-4 py-2 text-sm font-semibold text-background transition-transform duration-300 hover:-translate-y-0.5"
         >
           Download PDF ↓
         </a>

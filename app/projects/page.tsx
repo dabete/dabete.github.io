@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ProjectCard from "@/components/ProjectCard";
+import ProjectRow from "@/components/ProjectRow";
 import { getAllProjects } from "@/lib/projects";
 import ToBeContinued from "@/components/ToBeContinued";
 
@@ -15,10 +15,12 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <h1 className="text-3xl font-semibold">Projects</h1>
-      <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {featured.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
+      <h1 className="mt-6 text-5xl sm:text-6xl">Projects</h1>
+
+      <p className="mt-10 font-mono text-xs tracking-widest text-muted uppercase">Finished</p>
+      <ul className="mt-3 border-b border-line">
+        {featured.map((project, i) => (
+          <ProjectRow key={project.slug} project={project} index={i + 1} />
         ))}
       </ul>
 
@@ -26,16 +28,16 @@ export default function ProjectsPage() {
       <ToBeContinued />
 
       {inProgress.length > 0 && (
-        <>
-          <h2 className="mt-10 font-medium text-foreground">
+        <section>
+          <p className="mt-10 font-mono text-xs tracking-widest text-muted uppercase">
             Currently building
-          </h2>
-          <ul className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {inProgress.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+          </p>
+          <ul className="mt-3 border-b border-line">
+            {inProgress.map((project, i) => (
+              <ProjectRow key={project.slug} project={project} index={featured.length + i + 1} quiet />
             ))}
           </ul>
-        </>
+        </section>
       )}
     </>
   );
